@@ -1,12 +1,11 @@
 import React from 'react';
+
 import './styles/styles.css';
+
+import { AppRouter } from './routes/AppRouter';
 
 export const MyNotes = () => {
 	console.clear();
 
-	return (
-		<div>
-			<h1>My Notes</h1>
-		</div>
-	);
+	return <AppRouter />;
 };
