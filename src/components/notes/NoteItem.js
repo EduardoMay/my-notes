@@ -13,7 +13,7 @@ export const NoteItem = ({ title, id, favorite }) => {
 
 	return (
 		<li className="list-group-item list-group-item-action">
-			<Link to={`/note/${title}`}>{title}</Link>
+			<Link to={`/note/${id}`}>{title}</Link>
 			<i
 				className={`fa-heart ${favorite ? 'fa' : 'far'}`}
 				onClick={handleFavorite}

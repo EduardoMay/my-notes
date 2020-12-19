@@ -28,7 +28,7 @@ export const AppRouter = () => {
 			<div>
 				<Switch>
 					<Route exact path="/home" component={NotesScreen} />
-					<Route exact path="/note/:title" component={NoteScreen} />
+					<Route exact path="/note/:id" component={NoteScreen} />
 					<Route
 						exact
 						path="/favorities"
