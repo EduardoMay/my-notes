@@ -13,8 +13,8 @@ import { Navbar } from '../components/ui/Navbar';
 import { NotesScreen } from '../components/notes/NotesScreen';
 import { FavoritiesScreen } from '../components/favorities/FavoritiesScreen';
 import { CategoriesScreen } from './../components/categories/CategoriesScreen';
-import { AddButton } from '../components/ui/AddButton';
 import { NoteScreen } from './../components/notes/NoteScreen';
+import { AddNote } from './../components/notes/AddNote';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -29,6 +29,7 @@ export const AppRouter = () => {
 				<Switch>
 					<Route exact path="/home" component={NotesScreen} />
 					<Route exact path="/note/:id" component={NoteScreen} />
+					<Route exact path="/newnote" component={AddNote} />
 					<Route
 						exact
 						path="/favorities"
@@ -43,7 +44,6 @@ export const AppRouter = () => {
 					<Redirect to="/home" />
 				</Switch>
 
-				<AddButton />
 				<Navbar />
 			</div>
 		</Router>

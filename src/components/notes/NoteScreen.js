@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { getNoteById } from './../../helpers/getNoteById';
 
 export const NoteScreen = () => {
 	const { id } = useParams();
 
-	const note = useMemo(() => getNoteById(Number(id)), [id]);
+	const note = getNoteById(Number(id));
 
 	if (!note) {
 		return <Redirect to="/" />;
