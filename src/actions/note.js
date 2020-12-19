@@ -1,4 +1,5 @@
 import { types } from './../types/types';
+import { getNoteById } from '../helpers/getNoteById';
 
 export const getAllNotesStorageAction = () => {
 	return (dispatch) => {
@@ -27,6 +28,32 @@ export const addNotesAction = (notes) => ({
 export const addNoteAction = (note) => ({
 	type: types.addNote,
 	payload: note,
+});
+
+export const favoriteNoteAction = (id) => {
+	return (dispatch) => {
+		const note = getNoteById(id);
+
+		note.favorite = !note.favorite;
+
+		updateNoteStorageAction(id, note);
+		dispatch(updateNoteAcion(note));
+	};
+};
+
+export const updateNoteStorageAction = (id, note) => {
+	const notes = JSON.parse(localStorage.notes);
+
+	const notesUpdate = notes.map((noteItem) =>
+		noteItem.id === note.id ? note : noteItem
+	);
+
+	localStorage.setItem('notes', JSON.stringify(notesUpdate));
+};
+
+export const updateNoteAcion = (note) => ({
+	type: types.updateNote,
+	payload: { id: note.id, note },
 });
 
 export const activeNewNoteAction = () => ({

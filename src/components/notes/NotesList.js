@@ -12,7 +12,14 @@ export const NotesList = () => {
 					<small>Sin notas</small>
 				</h5>
 			) : (
-				notes.map((note, i) => <NoteItem key={i} title={note.title} />)
+				notes.map((note) => (
+					<NoteItem
+						key={note.id}
+						title={note.title}
+						id={note.id}
+						favorite={note.favorite}
+					/>
+				))
 			)}
 		</div>
 	);

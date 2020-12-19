@@ -5,4 +5,5 @@ export const types = {
 	editNote: '[EditNote] editar nota',
 	activeNewNote: '[ActiveNewNote] nueva nota',
 	desactivateNewNote: '[DesactivateNewNote] nueva nota',
+	updateNote: '[UpdateNote] actualizar nota',
 };
