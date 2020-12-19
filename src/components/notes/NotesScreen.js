@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NotesList } from './NotesList';
 import { AddNote } from './AddNote';
+import { addNotes } from '../../actions/note';
 
 export const NotesScreen = () => {
+	const dispatch = useDispatch();
 	const { activeNewNote, notes } = useSelector((state) => state.notes);
 
 	useEffect(() => {
-		saveNotesStorage(notes);
-	}, [notes]);
+		notes.length === 0 && dispatch(addNotes(getAllNoteStorage()));
+		notes.length > 0 && saveNotesStorage(notes);
+	}, [notes, dispatch]);
 
 	const saveNotesStorage = (notes) => {
 		localStorage.setItem('notes', JSON.stringify(notes));
 	};
+
+	const getAllNoteStorage = () => JSON.parse(localStorage.getItem('notes'));
 
 	return (
 		<>

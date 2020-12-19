@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const NoteItem = () => {
+export const NoteItem = ({ title }) => {
 	return (
 		<Link to="/note/id" className="list-group-item list-group-item-action">
-			Cras justo odio
+			{title}
 		</Link>
 	);
 };
