@@ -1,6 +1,6 @@
 import { types } from './../types/types';
 
-const initialState = {};
+const initialState = { activeNewNote: false, notes: [] };
 
 export const noteReducer = (state = initialState, action) => {
 	switch (action.type) {

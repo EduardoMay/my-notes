@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NotesList } from './NotesList';
 import { AddNote } from './AddNote';
 
 export const NotesScreen = () => {
-	const { activeNewNote } = useSelector((state) => state.notes);
+	const { activeNewNote, notes } = useSelector((state) => state.notes);
 
-	console.log(activeNewNote);
+	useEffect(() => {
+		saveNotesStorage(notes);
+	}, [notes]);
+
+	const saveNotesStorage = (notes) => {
+		localStorage.setItem('notes', JSON.stringify(notes));
+	};
 
 	return (
 		<>

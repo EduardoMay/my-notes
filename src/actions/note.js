@@ -10,5 +10,5 @@ export const activeNewNoteAction = () => ({
 });
 
 export const desactivateNewNoteAction = () => ({
-	type: types.activeNewNote,
+	type: types.desactivateNewNote,
 });

@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
 
+import { addNoteAction, desactivateNewNoteAction } from '../../actions/note';
+
 export const AddNote = () => {
+	const dispatch = useDispatch();
 	const [formValues, handleInputChange] = useForm({
 		title: '',
 		description: '',
@@ -11,7 +15,8 @@ export const AddNote = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(title, description);
+		dispatch(addNoteAction(formValues));
+		dispatch(desactivateNewNoteAction());
 	};
 
 	return (
