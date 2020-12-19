@@ -51,6 +51,23 @@ export const updateNoteStorageAction = (id, note) => {
 	localStorage.setItem('notes', JSON.stringify(notesUpdate));
 };
 
+export const deleteNoteStorageAction = (id) => {
+	return (dispatch) => {
+		const notes = JSON.parse(localStorage.notes);
+
+		const notesUpdate = notes.filter((note) => note.id !== id);
+
+		localStorage.setItem('notes', JSON.stringify(notesUpdate));
+
+		dispatch(deleteNoteAction(id));
+	};
+};
+
+export const deleteNoteAction = (id) => ({
+	type: types.deleteNote,
+	payload: id,
+});
+
 export const updateNoteAcion = (note) => ({
 	type: types.updateNote,
 	payload: { id: note.id, note },
