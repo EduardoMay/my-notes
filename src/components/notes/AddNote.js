@@ -19,6 +19,8 @@ export const AddNote = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		formValues.id = new Date().getTime();
+
 		dispatch(addNoteStorageAction(formValues));
 		dispatch(desactivateNewNoteAction());
 	};
