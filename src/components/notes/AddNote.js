@@ -3,28 +3,42 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
 
-import { addNoteStorageAction } from '../../actions/note';
+import { addNoteStorageAction, udpateNoteAction } from '../../actions/note';
+import { useParams } from 'react-router-dom';
+import { getNoteById } from './../../helpers/getNoteById';
 
 export const AddNote = ({ history }) => {
+	const { id } = useParams();
+	const note = getNoteById(Number(id));
+
 	const dispatch = useDispatch();
 	const [alert, setAlert] = useState('');
-	const [formValues, handleInputChange] = useForm({
-		title: '',
-		description: '',
-		favorite: false,
-	});
+	const [formValues, handleInputChange] = useForm(
+		note
+			? note
+			: {
+					title: '',
+					description: '',
+					favorite: false,
+			  }
+	);
 	const { title, description } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (title !== '') {
-			formValues.id = new Date().getTime();
+		if (!id) {
+			if (title !== '') {
+				formValues.id = new Date().getTime();
 
-			dispatch(addNoteStorageAction(formValues));
-			history.push('/home');
+				dispatch(addNoteStorageAction(formValues));
+			} else {
+				setAlert('Ingresa un titulo');
+			}
 		} else {
-			setAlert('Ingresa un titulo');
+			dispatch(udpateNoteAction(Number(id), formValues));
 		}
+
+		history.push('/home');
 	};
 
 	return (

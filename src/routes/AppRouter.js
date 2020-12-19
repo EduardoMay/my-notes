@@ -30,6 +30,7 @@ export const AppRouter = () => {
 					<Route exact path="/home" component={NotesScreen} />
 					<Route exact path="/note/:id" component={NoteScreen} />
 					<Route exact path="/newnote" component={AddNote} />
+					<Route exact path="/newnote/:id" component={AddNote} />
 					<Route
 						exact
 						path="/favorities"

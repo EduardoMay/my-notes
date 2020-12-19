@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, Link } from 'react-router-dom';
 import { deleteNoteStorageAction } from '../../actions/note';
 import { getNoteById } from './../../helpers/getNoteById';
 
@@ -36,9 +36,12 @@ export const NoteScreen = ({ history }) => {
 					>
 						<i className="fa fa-trash"></i>
 					</button>
-					<button className="btn btn-outline-primary">
+					<Link
+						className="btn btn-outline-primary"
+						to={`/newnote/${id}`}
+					>
 						<i className="fa fa-edit"></i>
-					</button>
+					</Link>
 				</div>
 			</div>
 

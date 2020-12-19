@@ -41,11 +41,19 @@ export const favoriteNoteAction = (id) => {
 	};
 };
 
+export const udpateNoteAction = (id, note) => {
+	return (dispatch) => {
+		updateNoteStorageAction(id, note);
+
+		dispatch(updateNoteAcion(note));
+	};
+};
+
 export const updateNoteStorageAction = (id, note) => {
 	const notes = JSON.parse(localStorage.notes);
 
 	const notesUpdate = notes.map((noteItem) =>
-		noteItem.id === note.id ? note : noteItem
+		noteItem.id === id ? note : noteItem
 	);
 
 	localStorage.setItem('notes', JSON.stringify(notesUpdate));
