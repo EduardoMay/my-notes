@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
@@ -10,6 +10,7 @@ import {
 
 export const AddNote = () => {
 	const dispatch = useDispatch();
+	const [alert, setAlert] = useState('');
 	const [formValues, handleInputChange] = useForm({
 		title: '',
 		description: '',
@@ -19,10 +20,14 @@ export const AddNote = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		formValues.id = new Date().getTime();
+		if (title !== '') {
+			formValues.id = new Date().getTime();
 
-		dispatch(addNoteStorageAction(formValues));
-		dispatch(desactivateNewNoteAction());
+			dispatch(addNoteStorageAction(formValues));
+			dispatch(desactivateNewNoteAction());
+		} else {
+			setAlert('Ingresa un titulo');
+		}
 	};
 
 	return (
@@ -50,6 +55,17 @@ export const AddNote = () => {
 					value={description}
 				></textarea>
 			</div>
+
+			{alert !== '' ? (
+				<div
+					className="alert border border-danger text-danger"
+					role="alert"
+				>
+					{alert}
+				</div>
+			) : (
+				''
+			)}
 
 			<button type="submit" className="btn btn-outline-primary">
 				<i className="fa fa-save"></i> Guardar
