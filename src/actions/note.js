@@ -72,11 +72,3 @@ export const updateNoteAcion = (note) => ({
 	type: types.updateNote,
 	payload: { id: note.id, note },
 });
-
-export const activeNewNoteAction = () => ({
-	type: types.activeNewNote,
-});
-
-export const desactivateNewNoteAction = () => ({
-	type: types.desactivateNewNote,
-});

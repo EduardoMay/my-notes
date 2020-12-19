@@ -18,18 +18,6 @@ export const noteReducer = (state = initialState, action) => {
 				),
 			};
 
-		case types.activeNewNote:
-			return {
-				...state,
-				activeNewNote: true,
-			};
-
-		case types.desactivateNewNote:
-			return {
-				...state,
-				activeNewNote: false,
-			};
-
 		case types.addNotes:
 			return {
 				...state,

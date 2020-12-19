@@ -3,12 +3,9 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
 
-import {
-	addNoteStorageAction,
-	desactivateNewNoteAction,
-} from '../../actions/note';
+import { addNoteStorageAction } from '../../actions/note';
 
-export const AddNote = () => {
+export const AddNote = ({ history }) => {
 	const dispatch = useDispatch();
 	const [alert, setAlert] = useState('');
 	const [formValues, handleInputChange] = useForm({
@@ -24,7 +21,7 @@ export const AddNote = () => {
 			formValues.id = new Date().getTime();
 
 			dispatch(addNoteStorageAction(formValues));
-			dispatch(desactivateNewNoteAction());
+			history.push('/home');
 		} else {
 			setAlert('Ingresa un titulo');
 		}
