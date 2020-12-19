@@ -3,19 +3,23 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
 
-import { addNoteAction, desactivateNewNoteAction } from '../../actions/note';
+import {
+	addNoteStorageAction,
+	desactivateNewNoteAction,
+} from '../../actions/note';
 
 export const AddNote = () => {
 	const dispatch = useDispatch();
 	const [formValues, handleInputChange] = useForm({
 		title: '',
 		description: '',
+		favorite: false,
 	});
 	const { title, description } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(addNoteAction(formValues));
+		dispatch(addNoteStorageAction(formValues));
 		dispatch(desactivateNewNoteAction());
 	};
 

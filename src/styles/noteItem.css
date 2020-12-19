@@ -1,0 +1,12 @@
+.list-group-item {
+	display: flex;
+	justify-content: space-between;
+}
+
+.list-group-item a {
+	color: #292929;
+}
+
+.list-group-item i {
+	color: crimson;
+}
