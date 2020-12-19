@@ -9,15 +9,16 @@ export const NotesScreen = () => {
 	const { activeNewNote, notes } = useSelector((state) => state.notes);
 
 	useEffect(() => {
-		notes.length === 0 && dispatch(addNotes(getAllNoteStorage()));
-		notes.length > 0 && saveNotesStorage(notes);
+		notes.length === 0
+			? dispatch(addNotes(getAllNoteStorage()))
+			: saveNotesStorage(notes);
 	}, [notes, dispatch]);
 
 	const saveNotesStorage = (notes) => {
 		localStorage.setItem('notes', JSON.stringify(notes));
 	};
 
-	const getAllNoteStorage = () => JSON.parse(localStorage.getItem('notes'));
+	const getAllNoteStorage = () => JSON.parse(localStorage.notes);
 
 	return (
 		<>
