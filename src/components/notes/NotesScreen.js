@@ -1,13 +1,12 @@
 import React from 'react';
 import { NotesList } from './NotesList';
 import { AddButton } from './../ui/AddButton';
+import { NavTitle } from '../ui/NavTitle';
 
 export const NotesScreen = () => {
 	return (
 		<>
-			<div className="navbar navbar-light bg-light">
-				<span className="navbar-brand mb-0 h1">Mis notas</span>
-			</div>
+			<NavTitle title={'Mis notas'} />
 
 			<NotesList />
 			<AddButton />

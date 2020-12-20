@@ -6,7 +6,7 @@ export const NotesList = () => {
 	const { notes } = useSelector((state) => state.notes);
 
 	return (
-		<div className="list-group">
+		<ul className="list-group">
 			{notes.length <= 0 ? (
 				<h5>
 					<small>Sin notas</small>
@@ -21,6 +21,6 @@ export const NotesList = () => {
 					/>
 				))
 			)}
-		</div>
+		</ul>
 	);
 };

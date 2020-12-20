@@ -1,8 +1,12 @@
 import React, { useRef } from 'react';
-import { AddButton } from './../ui/AddButton';
-import { useForm } from './../../hooks/useForm';
 import { useDispatch } from 'react-redux';
+
 import { addCategorieStorageAction } from './../../actions/categories';
+import { useForm } from './../../hooks/useForm';
+
+import { AddButton } from './../ui/AddButton';
+import { NavTitle } from '../ui/NavTitle';
+
 import { CategoriesList } from './CategoriesList';
 
 export const CategoriesScreen = () => {
@@ -23,9 +27,7 @@ export const CategoriesScreen = () => {
 
 	return (
 		<>
-			<div className="navbar navbar-light bg-light">
-				<span className="navbar-brand mb-0 h1">Categorias</span>
-			</div>
+			<NavTitle title={'Categorias'} />
 
 			<div className="container">
 				<form className="row mt-3" onSubmit={handleSubmit}>

@@ -26,12 +26,12 @@ export const NoteScreen = ({ history }) => {
 
 	return (
 		<div>
-			<div className="navbar navbar-light bg-light">
+			<div className="navbar navbar-light bg-light container">
 				<span className="navbar-brand mb-0 h1">{title}</span>
 
 				<div>
 					<button
-						className="btn btn-outline-danger mr-2"
+						className="btn btn-outline-danger"
 						onClick={handleDelete}
 					>
 						<i className="fa fa-trash"></i>

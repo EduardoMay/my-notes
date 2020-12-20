@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/noteItem.css';
-import { favoriteNoteAction } from '../../actions/note';
 import { useDispatch } from 'react-redux';
+
+import '../../styles/noteItem.css';
+
+import { favoriteNoteAction } from '../../actions/note';
 
 export const NoteItem = ({ title, id, favorite }) => {
 	const dispatch = useDispatch();
@@ -12,10 +14,15 @@ export const NoteItem = ({ title, id, favorite }) => {
 	};
 
 	return (
-		<li className="list-group-item list-group-item-action">
-			<Link to={`/note/${id}`}>{title}</Link>
+		<li className="list-group-item list-group-item-action align-items-center">
+			<Link
+				className="text-decoration-none d-block col-11"
+				to={`/note/${id}`}
+			>
+				{title}
+			</Link>
 			<i
-				className={`fa-heart ${favorite ? 'fa' : 'far'}`}
+				className={`col-1 text-end fa-heart ${favorite ? 'fa' : 'far'}`}
 				onClick={handleFavorite}
 			></i>
 		</li>

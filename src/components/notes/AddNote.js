@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
-
 import { addNoteStorageAction, udpateNoteAction } from '../../actions/note';
-import { useParams } from 'react-router-dom';
 import { getNoteById } from './../../helpers/getNoteById';
+
+import { NavTitle } from './../ui/NavTitle';
 
 export const AddNote = ({ history }) => {
 	const { id } = useParams();
@@ -45,9 +46,7 @@ export const AddNote = ({ history }) => {
 
 	return (
 		<>
-			<div className="navbar navbar-light bg-light container">
-				<span className="navbar-brand mb-0 h1">Nueva nota</span>
-			</div>
+			<NavTitle title={'Nueva nota'} />
 
 			<form className="container mt-4" onSubmit={handleSubmit}>
 				<div className="form-group">

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { getNotesFavorites } from './../../helpers/getNotesFavorites';
 
 import { AddButton } from './../ui/AddButton';
-import { getNotesFavorites } from './../../helpers/getNotesFavorites';
+import { NavTitle } from './../ui/NavTitle';
+
 import { NoteItem } from '../notes/NoteItem';
-import { useSelector } from 'react-redux';
 
 export const FavoritiesScreen = () => {
 	const { notes } = useSelector((state) => state.notes);
@@ -15,9 +18,7 @@ export const FavoritiesScreen = () => {
 
 	return (
 		<>
-			<div className="navbar navbar-light bg-light">
-				<span className="navbar-brand mb-0 h1">Favoritos</span>
-			</div>
+			<NavTitle title={'Favoritos'} />
 
 			{notesList.length > 0 ? (
 				notesList.map((note) => (
