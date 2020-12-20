@@ -3,6 +3,7 @@ import { AddButton } from './../ui/AddButton';
 import { useForm } from './../../hooks/useForm';
 import { useDispatch } from 'react-redux';
 import { addCategorieStorageAction } from './../../actions/categories';
+import { CategoriesList } from './CategoriesList';
 
 export const CategoriesScreen = () => {
 	const categoryInput = useRef();
@@ -51,20 +52,7 @@ export const CategoriesScreen = () => {
 				</form>
 			</div>
 
-			<ul className="list-group mt-4" style={{ marginBottom: '90px' }}>
-				<li className="list-group-item">Cras justo odio</li>
-				<li className="list-group-item">Dapibus ac facilisis in</li>
-				<li className="list-group-item">Morbi leo risus</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Porta ac consectetur ac</li>
-				<li className="list-group-item">Vestibulum at eros</li>
-			</ul>
+			<CategoriesList />
 
 			<AddButton />
 		</>

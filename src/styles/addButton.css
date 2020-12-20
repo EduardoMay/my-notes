@@ -1,5 +1,5 @@
 .add-button {
-	position: absolute;
+	position: fixed;
 	bottom: 15%;
 	right: 20px;
 }
