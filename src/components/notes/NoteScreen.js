@@ -14,7 +14,7 @@ export const NoteScreen = ({ history }) => {
 		return <Redirect to="/" />;
 	}
 
-	const { title, description } = note;
+	const { title, description, category } = note;
 
 	const handleDelete = () => {
 		if (window.confirm('Seguro que desea eliminar?')) {
@@ -45,7 +45,14 @@ export const NoteScreen = ({ history }) => {
 				</div>
 			</div>
 
-			<div className="container mt-4">{description}</div>
+			<div className="container">
+				{category && (
+					<div className="mb-2">
+						<span className="badge bg-primary">{category}</span>
+					</div>
+				)}
+				{description}
+			</div>
 		</div>
 	);
 };

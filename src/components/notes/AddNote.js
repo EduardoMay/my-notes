@@ -82,8 +82,8 @@ export const AddNote = ({ history }) => {
 							onChange={handleInputChange}
 						>
 							<option value="">Seleccionar</option>
-							{categories.map((category) => (
-								<option key={category} value={category}>
+							{categories.map(({ id, category }) => (
+								<option key={id} value={category}>
 									{category}
 								</option>
 							))}
