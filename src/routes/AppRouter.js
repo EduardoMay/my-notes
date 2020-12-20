@@ -16,6 +16,7 @@ import { CategoriesScreen } from './../components/categories/CategoriesScreen';
 import { NoteScreen } from './../components/notes/NoteScreen';
 import { AddNote } from './../components/notes/AddNote';
 import { saveAllCategoriesAction } from '../actions/categories';
+import { AddCategoryScreen } from '../components/categories/AddCategoryScreen';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -42,6 +43,11 @@ export const AppRouter = () => {
 						exact
 						path="/categories"
 						component={CategoriesScreen}
+					/>
+					<Route
+						exact
+						path="/addcategory"
+						component={AddCategoryScreen}
 					/>
 
 					<Redirect to="/home" />

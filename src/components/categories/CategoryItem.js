@@ -8,16 +8,21 @@ export const CategoryItem = ({ category, id }) => {
 
 	const handleDelete = () => {
 		if (window.confirm('Seguro que eliminar?')) {
-			// TODO dispatch para eliminar la nota del localstorage
 			dispatch(deleteCategoryStorageAction(id));
 		}
 	};
 
+	const handleUpdate = () => {};
+
 	return (
-		<li className="list-group-item">
+		<li className="list-group-item align-items-center">
 			{category}
-			<div onClick={handleDelete}>
-				<i className="fa fa-trash"></i>
+			<div>
+				<i className="fa fa-trash" onClick={handleDelete}></i>
+				<i
+					className="fa fa-edit text-primary d-block mt-2"
+					onClick={handleUpdate}
+				></i>
 			</div>
 		</li>
 	);
