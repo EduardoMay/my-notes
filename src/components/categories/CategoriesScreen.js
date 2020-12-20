@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import uniqid from 'uniqid';
 
 import { addCategorieStorageAction } from './../../actions/categories';
 import { useForm } from './../../hooks/useForm';
@@ -19,7 +20,9 @@ export const CategoriesScreen = () => {
 		e.preventDefault();
 
 		if (category !== '') {
-			dispatch(addCategorieStorageAction(category));
+			formValues.id = uniqid('category-');
+
+			dispatch(addCategorieStorageAction(formValues));
 			reset();
 			categoryInput.current.focus();
 		}

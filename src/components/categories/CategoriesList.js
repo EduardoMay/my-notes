@@ -8,8 +8,8 @@ export const CategoriesList = () => {
 	return (
 		<div>
 			<ul className="list-group mt-4" style={{ marginBottom: '90px' }}>
-				{categories.map((category, i) => (
-					<CategoryItem key={i} category={category} />
+				{categories.map((category) => (
+					<CategoryItem key={category.id} {...category} />
 				))}
 			</ul>
 		</div>
