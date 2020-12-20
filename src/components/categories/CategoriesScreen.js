@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { AddButton } from './../ui/AddButton';
 import { useForm } from './../../hooks/useForm';
+import { useDispatch } from 'react-redux';
+import { addCategorieStorageAction } from './../../actions/categories';
 
 export const CategoriesScreen = () => {
-	const [formValues, handleInputChange] = useForm({ category: '' });
+	const categoryInput = useRef();
+	const dispatch = useDispatch();
+	const [formValues, handleInputChange, reset] = useForm({ category: '' });
 	const { category } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (category !== '') {
-			console.log(true);
+			dispatch(addCategorieStorageAction(category));
+			reset();
+			categoryInput.current.focus();
 		}
 	};
 
@@ -24,6 +30,7 @@ export const CategoriesScreen = () => {
 				<form className="row mt-3" onSubmit={handleSubmit}>
 					<div className="col-9">
 						<input
+							ref={categoryInput}
 							type="text"
 							className="form-control"
 							name="category"
