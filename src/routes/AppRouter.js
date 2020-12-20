@@ -15,12 +15,14 @@ import { FavoritiesScreen } from '../components/favorities/FavoritiesScreen';
 import { CategoriesScreen } from './../components/categories/CategoriesScreen';
 import { NoteScreen } from './../components/notes/NoteScreen';
 import { AddNote } from './../components/notes/AddNote';
+import { saveAllCategoriesAction } from '../actions/categories';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getAllNotesStorageAction());
+		dispatch(saveAllCategoriesAction());
 	}, [dispatch]);
 
 	return (

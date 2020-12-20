@@ -8,6 +8,7 @@ export const types = {
 	updateNote: '[UpdateNote] actualizar nota',
 
 	addCategorie: '[AddCategorie] agregar categorie',
+	saveCategorie: '[SaveCategorie] guardar categorie',
 	updatedCategorie: '[UpdateCategorie] actualizar categorie',
 	deleteCategorie: '[DeleteCategorie] eliminar categorie',
 };

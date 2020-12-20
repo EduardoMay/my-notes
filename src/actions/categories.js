@@ -14,6 +14,17 @@ export const addCategorieStorageAction = (category) => {
 	};
 };
 
+export const saveAllCategoriesAction = () => {
+	const categoriesStorage = localStorage.categories
+		? JSON.parse(localStorage.categories)
+		: [];
+
+	return {
+		type: types.saveCategorie,
+		payload: categoriesStorage,
+	};
+};
+
 export const addCategorieAction = (category) => ({
 	type: types.addCategorie,
 	payload: category,
