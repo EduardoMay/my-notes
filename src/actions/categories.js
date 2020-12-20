@@ -29,3 +29,22 @@ export const addCategorieAction = (category) => ({
 	type: types.addCategorie,
 	payload: category,
 });
+
+export const deleteCategoryStorageAction = (id) => {
+	return (dispatch) => {
+		const categories = JSON.parse(localStorage.categories);
+
+		const newCategories = categories.filter(
+			(category) => category.id !== id
+		);
+
+		localStorage.setItem('categories', JSON.stringify(newCategories));
+
+		dispatch(deleteCategoryAction(id));
+	};
+};
+
+export const deleteCategoryAction = (id) => ({
+	type: types.deleteCategorie,
+	payload: id,
+});
