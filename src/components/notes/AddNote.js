@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from './../../hooks/useForm';
 
@@ -11,6 +11,7 @@ export const AddNote = ({ history }) => {
 	const { id } = useParams();
 	const note = getNoteById(Number(id));
 
+	const { categories } = useSelector((state) => state.categories);
 	const dispatch = useDispatch();
 	const [alert, setAlert] = useState('');
 	const [formValues, handleInputChange] = useForm(
@@ -20,9 +21,10 @@ export const AddNote = ({ history }) => {
 					title: '',
 					description: '',
 					favorite: false,
+					category: '',
 			  }
 	);
-	const { title, description } = formValues;
+	const { title, description, category } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -43,7 +45,7 @@ export const AddNote = ({ history }) => {
 
 	return (
 		<>
-			<div className="navbar navbar-light bg-light">
+			<div className="navbar navbar-light bg-light container">
 				<span className="navbar-brand mb-0 h1">Nueva nota</span>
 			</div>
 
@@ -60,7 +62,7 @@ export const AddNote = ({ history }) => {
 					/>
 				</div>
 
-				<div className="form-group">
+				<div className="form-group my-4">
 					<textarea
 						className="form-control"
 						id="exampleFormControlTextarea1"
@@ -71,6 +73,24 @@ export const AddNote = ({ history }) => {
 						value={description}
 					></textarea>
 				</div>
+
+				{categories.length > 0 && (
+					<div className="form-group mb-3">
+						<select
+							className="form-select form-select-sm"
+							name="category"
+							value={category}
+							onChange={handleInputChange}
+						>
+							<option value="">Seleccionar</option>
+							{categories.map((category) => (
+								<option key={category} value={category}>
+									{category}
+								</option>
+							))}
+						</select>
+					</div>
+				)}
 
 				{alert !== '' ? (
 					<div
@@ -83,9 +103,11 @@ export const AddNote = ({ history }) => {
 					''
 				)}
 
-				<button type="submit" className="btn btn-outline-primary">
-					<i className="fa fa-save"></i> Guardar
-				</button>
+				<div className="text-end">
+					<button type="submit" className="btn btn-outline-primary">
+						<i className="fa fa-save"></i> Guardar
+					</button>
+				</div>
 			</form>
 		</>
 	);
