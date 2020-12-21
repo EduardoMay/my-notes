@@ -17,7 +17,10 @@ export const CategoryItem = ({ category, id }) => {
 		<li className="list-group-item align-items-center">
 			{category}
 			<div>
-				<i className="fa fa-trash" onClick={handleDelete}></i>
+				<i
+					className="fa fa-trash cursor-pointer"
+					onClick={handleDelete}
+				></i>
 				<Link
 					className="fa fa-edit text-primary d-block mt-2"
 					to={`/addcategory/${id}`}

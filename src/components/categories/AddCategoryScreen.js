@@ -13,10 +13,12 @@ import { getCategoryById } from '../../helpers/getCategoryById';
 
 export const AddCategoryScreen = ({ history }) => {
 	const { id } = useParams();
-	const { category: categoryValue } = getCategoryById(id);
+	const { category: categoryValue } = getCategoryById(id)
+		? getCategoryById(id)
+		: '';
 	const dispatch = useDispatch();
 	const [formValues, handleInputChange] = useForm({
-		category: categoryValue !== '' ? categoryValue : '',
+		category: categoryValue ? categoryValue : '',
 	});
 	const { category } = formValues;
 

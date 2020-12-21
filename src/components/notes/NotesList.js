@@ -7,11 +7,7 @@ export const NotesList = () => {
 
 	return (
 		<ul className="list-group">
-			{notes.length <= 0 ? (
-				<h5>
-					<small>Sin notas</small>
-				</h5>
-			) : (
+			{notes.length > 0 &&
 				notes.map((note) => (
 					<NoteItem
 						key={note.id}
@@ -19,8 +15,7 @@ export const NotesList = () => {
 						id={note.id}
 						favorite={note.favorite}
 					/>
-				))
-			)}
+				))}
 		</ul>
 	);
 };

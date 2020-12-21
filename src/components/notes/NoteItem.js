@@ -22,7 +22,9 @@ export const NoteItem = ({ title, id, favorite }) => {
 				{title}
 			</Link>
 			<i
-				className={`col-1 text-end fa-heart ${favorite ? 'fa' : 'far'}`}
+				className={`col-1 cursor-pointer text-end fa-heart ${
+					favorite ? 'fa' : 'far'
+				}`}
 				onClick={handleFavorite}
 			></i>
 		</li>
