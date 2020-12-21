@@ -49,6 +49,11 @@ export const AppRouter = () => {
 						path="/addcategory"
 						component={AddCategoryScreen}
 					/>
+					<Route
+						exact
+						path="/addcategory/:id"
+						component={AddCategoryScreen}
+					/>
 
 					<Redirect to="/home" />
 				</Switch>

@@ -3,23 +3,38 @@ import { useDispatch } from 'react-redux';
 import uniqid from 'uniqid';
 
 import { useForm } from '../../hooks/useForm';
-import { addCategorieStorageAction } from './../../actions/categories';
+import {
+	addCategorieStorageAction,
+	updateCategoryStorageAction,
+} from './../../actions/categories';
 import { NavTitle } from './../ui/NavTitle';
+import { useParams } from 'react-router-dom';
+import { getCategoryById } from '../../helpers/getCategoryById';
 
 export const AddCategoryScreen = ({ history }) => {
+	const { id } = useParams();
+	const { category: categoryValue } = getCategoryById(id);
 	const dispatch = useDispatch();
-	const [formValues, handleInputChange] = useForm({ category: '' });
+	const [formValues, handleInputChange] = useForm({
+		category: categoryValue !== '' ? categoryValue : '',
+	});
 	const { category } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (category !== '') {
-			formValues.id = uniqid('category-');
+		if (!id) {
+			if (category !== '') {
+				formValues.id = uniqid('category-');
 
-			dispatch(addCategorieStorageAction(formValues));
-			history.push('/categories');
+				dispatch(addCategorieStorageAction(formValues));
+			}
+		} else {
+			formValues.id = id;
+			dispatch(updateCategoryStorageAction(id, formValues));
 		}
+
+		history.push('/categories');
 	};
 
 	return (
@@ -44,6 +59,7 @@ export const AddCategoryScreen = ({ history }) => {
 						className="btn btn-outline-primary btn-block"
 					>
 						<i className="fa fa-save"></i>
+						Guardar
 					</button>
 				</div>
 			</form>

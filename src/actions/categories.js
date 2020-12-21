@@ -48,3 +48,22 @@ export const deleteCategoryAction = (id) => ({
 	type: types.deleteCategorie,
 	payload: id,
 });
+
+export const updateCategoryStorageAction = (id, category) => {
+	return (dispatch) => {
+		const categories = JSON.parse(localStorage.categories);
+
+		const newCategories = categories.map((c) =>
+			c.id === id ? category : c
+		);
+
+		localStorage.setItem('categories', JSON.stringify(newCategories));
+
+		dispatch(updateCategoryAction(category));
+	};
+};
+
+export const updateCategoryAction = (category) => ({
+	type: types.updatedCategorie,
+	payload: category,
+});

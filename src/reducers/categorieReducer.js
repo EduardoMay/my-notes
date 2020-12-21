@@ -24,6 +24,16 @@ export const categorieReducer = (state = initialState, action) => {
 				),
 			};
 
+		case types.updatedCategorie:
+			return {
+				...state,
+				categories: state.categories.map((category) =>
+					category.id === action.payload.id
+						? action.payload
+						: category
+				),
+			};
+
 		default:
 			return state;
 	}
