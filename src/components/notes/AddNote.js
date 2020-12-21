@@ -1,44 +1,51 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import uniqid from 'uniqid';
 
 import { useForm } from './../../hooks/useForm';
 import { addNoteStorageAction, udpateNoteAction } from '../../actions/note';
 import { getNoteById } from './../../helpers/getNoteById';
 
 import { NavTitle } from './../ui/NavTitle';
+import { getCategoryById } from '../../helpers/getCategoryById';
 
 export const AddNote = ({ history }) => {
+	const initialValues = {
+		title: '',
+		description: '',
+		favorite: false,
+		categoryId: '',
+		category: {},
+	};
 	const { id } = useParams();
-	const note = getNoteById(Number(id));
+	const note = getNoteById(id) ? getNoteById(id) : initialValues;
 
 	const { categories } = useSelector((state) => state.categories);
 	const dispatch = useDispatch();
 	const [alert, setAlert] = useState('');
-	const [formValues, handleInputChange] = useForm(
-		note
-			? note
-			: {
-					title: '',
-					description: '',
-					favorite: false,
-					category: '',
-			  }
-	);
-	const { title, description, category } = formValues;
+	const [formValues, handleInputChange] = useForm(note);
+	const { title, description, categoryId } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!id) {
 			if (title !== '') {
-				formValues.id = new Date().getTime();
+				formValues.id = uniqid('note-');
+
+				if (categoryId !== '') {
+					formValues.category = getCategoryById(categoryId);
+				}
 
 				dispatch(addNoteStorageAction(formValues));
 			} else {
 				setAlert('Ingresa un titulo');
 			}
 		} else {
-			dispatch(udpateNoteAction(Number(id), formValues));
+			if (categoryId !== '') {
+				formValues.category = getCategoryById(categoryId);
+			}
+			dispatch(udpateNoteAction(id, formValues));
 		}
 
 		history.push('/home');
@@ -77,13 +84,13 @@ export const AddNote = ({ history }) => {
 					<div className="form-group mb-3">
 						<select
 							className="form-select form-select-sm"
-							name="category"
-							value={category}
+							name="categoryId"
+							value={categoryId}
 							onChange={handleInputChange}
 						>
 							<option value="">Seleccionar</option>
 							{categories.map(({ id, category }) => (
-								<option key={id} value={category}>
+								<option key={id} value={id}>
 									{category}
 								</option>
 							))}

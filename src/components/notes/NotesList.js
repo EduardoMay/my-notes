@@ -8,14 +8,7 @@ export const NotesList = () => {
 	return (
 		<ul className="list-group">
 			{notes.length > 0 &&
-				notes.map((note) => (
-					<NoteItem
-						key={note.id}
-						title={note.title}
-						id={note.id}
-						favorite={note.favorite}
-					/>
-				))}
+				notes.map((note) => <NoteItem key={note.id} {...note} />)}
 		</ul>
 	);
 };

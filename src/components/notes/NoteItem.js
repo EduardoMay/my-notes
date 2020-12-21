@@ -6,7 +6,7 @@ import '../../styles/noteItem.css';
 
 import { favoriteNoteAction } from '../../actions/note';
 
-export const NoteItem = ({ title, id, favorite }) => {
+export const NoteItem = ({ title, id, favorite, category }) => {
 	const dispatch = useDispatch();
 
 	const handleFavorite = () => {
@@ -20,6 +20,17 @@ export const NoteItem = ({ title, id, favorite }) => {
 				to={`/note/${id}`}
 			>
 				{title}
+				{category.category && (
+					<span
+						className="badge ms-2"
+						style={{
+							border: `1px solid ${category.color}`,
+							color: category.color,
+						}}
+					>
+						{category.category}
+					</span>
+				)}
 			</Link>
 			<i
 				className={`col-1 cursor-pointer text-end fa-heart ${

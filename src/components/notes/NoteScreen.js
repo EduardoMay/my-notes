@@ -8,17 +8,21 @@ export const NoteScreen = ({ history }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 
-	const note = getNoteById(Number(id));
+	const note = getNoteById(id);
 
 	if (!note) {
 		return <Redirect to="/" />;
 	}
 
-	const { title, description, category } = note;
+	const {
+		title,
+		description,
+		category: { category: categoryName = '', color = '' },
+	} = note;
 
 	const handleDelete = () => {
 		if (window.confirm('Seguro que desea eliminar?')) {
-			dispatch(deleteNoteStorageAction(Number(id)));
+			dispatch(deleteNoteStorageAction(id));
 
 			history.push('/home');
 		}
@@ -26,29 +30,39 @@ export const NoteScreen = ({ history }) => {
 
 	return (
 		<div>
-			<div className="navbar navbar-light bg-light container">
-				<span className="navbar-brand mb-0 h1">{title}</span>
+			<div className="navbar navbar-light bg-light ">
+				<div className="container">
+					<span className="navbar-brand mb-0 h1">{title}</span>
 
-				<div>
-					<button
-						className="btn btn-outline-danger"
-						onClick={handleDelete}
-					>
-						<i className="fa fa-trash"></i>
-					</button>
-					<Link
-						className="btn btn-outline-primary"
-						to={`/newnote/${id}`}
-					>
-						<i className="fa fa-edit"></i>
-					</Link>
+					<div>
+						<button
+							className="btn btn-outline-danger me-2"
+							onClick={handleDelete}
+						>
+							<i className="fa fa-trash"></i>
+						</button>
+						<Link
+							className="btn btn-outline-primary"
+							to={`/newnote/${id}`}
+						>
+							<i className="fa fa-edit"></i>
+						</Link>
+					</div>
 				</div>
 			</div>
 
 			<div className="container">
-				{category && (
+				{categoryName && (
 					<div className="mb-2">
-						<span className="badge bg-primary">{category}</span>
+						<span
+							className="badge"
+							style={{
+								border: `1px solid ${color}`,
+								color: color,
+							}}
+						>
+							{categoryName}
+						</span>
 					</div>
 				)}
 				{description}

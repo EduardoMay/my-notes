@@ -12,15 +12,17 @@ import { useParams } from 'react-router-dom';
 import { getCategoryById } from '../../helpers/getCategoryById';
 
 export const AddCategoryScreen = ({ history }) => {
+	const initialValues = {
+		category: '',
+		color: '#00ff00',
+	};
 	const { id } = useParams();
-	const { category: categoryValue } = getCategoryById(id)
+	const categoryValue = getCategoryById(id)
 		? getCategoryById(id)
-		: '';
+		: initialValues;
 	const dispatch = useDispatch();
-	const [formValues, handleInputChange] = useForm({
-		category: categoryValue ? categoryValue : '',
-	});
-	const { category } = formValues;
+	const [formValues, handleInputChange] = useForm(categoryValue);
+	const { category, color = '#00ff00' } = formValues;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -32,7 +34,6 @@ export const AddCategoryScreen = ({ history }) => {
 				dispatch(addCategorieStorageAction(formValues));
 			}
 		} else {
-			formValues.id = id;
 			dispatch(updateCategoryStorageAction(id, formValues));
 		}
 
@@ -44,14 +45,26 @@ export const AddCategoryScreen = ({ history }) => {
 			<NavTitle title={'Categorias'} />
 
 			<form className="mt-3 container" onSubmit={handleSubmit}>
-				<div className="form-group">
+				<div className="form-floating mb-3">
 					<input
+						id="category"
 						type="text"
 						className="form-control"
 						name="category"
-						placeholder="Categoria"
 						onChange={handleInputChange}
 						value={category}
+						placeholder="Categoria"
+					/>
+					<label htmlFor="category">Categoria</label>
+				</div>
+
+				<div className="form-control">
+					<input
+						type="color"
+						className="form-control"
+						onChange={handleInputChange}
+						value={color}
+						name="color"
 					/>
 				</div>
 
