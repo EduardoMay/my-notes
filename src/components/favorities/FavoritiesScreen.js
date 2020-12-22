@@ -21,14 +21,7 @@ export const FavoritiesScreen = () => {
 			<NavTitle title={'Favoritos'} />
 
 			{notesList.length > 0 &&
-				notesList.map((note) => (
-					<NoteItem
-						key={note.id}
-						title={note.title}
-						id={note.id}
-						favorite={note.favorite}
-					/>
-				))}
+				notesList.map((note) => <NoteItem key={note.id} {...note} />)}
 
 			<AddButton />
 		</>

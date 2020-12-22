@@ -9,7 +9,7 @@ export const Navbar = () => {
 				<i className="fa fa-home"></i>
 				Inicio
 			</NavLink>
-			<NavLink className="nav-link" to="favorities">
+			<NavLink className="nav-link" to="/favorities">
 				<i className="fa fa-heart"></i>
 				Favoritos
 			</NavLink>
