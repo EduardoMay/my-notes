@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { AddButton } from './AddButton';
 
 export const NavTitle = ({ title, url }) => {
 	return (
@@ -8,13 +8,7 @@ export const NavTitle = ({ title, url }) => {
 
 			{url && (
 				<div>
-					<Link
-						type="button"
-						className="btn btn-outline-primary btn-sm rounded-circle"
-						to={`/${url}`}
-					>
-						<i className="fa fa-plus"></i>
-					</Link>
+					<AddButton url={url} />
 				</div>
 			)}
 		</div>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, useParams, Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
+import Swal from 'sweetalert2';
+
 import { deleteNoteStorageAction } from '../../actions/note';
 import { getNoteById } from './../../helpers/getNoteById';
-import ReactHtmlParser from 'react-html-parser';
 
 export const NoteScreen = ({ history }) => {
 	const { id } = useParams();
@@ -22,11 +24,20 @@ export const NoteScreen = ({ history }) => {
 	} = note;
 
 	const handleDelete = () => {
-		if (window.confirm('Seguro que desea eliminar?')) {
-			dispatch(deleteNoteStorageAction(id));
-
-			history.push('/home');
-		}
+		Swal.fire({
+			title: 'Seguro que desea eliminar la nota?',
+			showConfirmButton: false,
+			showDenyButton: true,
+			showCancelButton: true,
+			denyButtonText: `Eliminar`,
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isDenied) {
+				dispatch(deleteNoteStorageAction(id));
+				history.push('/home');
+			}
+		});
 	};
 
 	return (

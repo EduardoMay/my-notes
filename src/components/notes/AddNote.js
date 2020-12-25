@@ -92,7 +92,11 @@ export const AddNote = ({ history }) => {
 		<>
 			<NavTitle title={'Nueva nota'} />
 
-			<form className="container mt-4" onSubmit={handleSubmit}>
+			<form
+				className="container mt-4"
+				onSubmit={handleSubmit}
+				style={{ marginBottom: '90px' }}
+			>
 				<div className="form-group">
 					<input
 						type="text"
