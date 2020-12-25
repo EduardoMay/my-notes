@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect, useParams, Link } from 'react-router-dom';
 import { deleteNoteStorageAction } from '../../actions/note';
 import { getNoteById } from './../../helpers/getNoteById';
+import ReactHtmlParser from 'react-html-parser';
 
 export const NoteScreen = ({ history }) => {
 	const { id } = useParams();
@@ -65,7 +66,8 @@ export const NoteScreen = ({ history }) => {
 						</span>
 					</div>
 				)}
-				{description}
+
+				<div className="mt-3">{ReactHtmlParser(description)}</div>
 			</div>
 		</div>
 	);
