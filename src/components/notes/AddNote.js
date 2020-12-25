@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import uniqid from 'uniqid';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { useForm } from './../../hooks/useForm';
 import { addNoteStorageAction, udpateNoteAction } from '../../actions/note';
@@ -9,6 +11,37 @@ import { getNoteById } from './../../helpers/getNoteById';
 
 import { NavTitle } from './../ui/NavTitle';
 import { getCategoryById } from '../../helpers/getCategoryById';
+
+const configCkeditor = {
+	toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList'],
+	heading: {
+		options: [
+			{
+				model: 'paragraph',
+				title: 'Paragraph',
+				class: 'ck-heading_paragraph',
+			},
+			{
+				model: 'heading1',
+				view: 'h1',
+				title: 'Heading 1',
+				class: 'ck-heading_heading1',
+			},
+			{
+				model: 'heading2',
+				view: 'h2',
+				title: 'Heading 2',
+				class: 'ck-heading_heading2',
+			},
+			{
+				model: 'heading3',
+				view: 'h3',
+				title: 'Heading 3',
+				class: 'ck-heading_heading3',
+			},
+		],
+	},
+};
 
 export const AddNote = ({ history }) => {
 	const initialValues = {
@@ -26,6 +59,10 @@ export const AddNote = ({ history }) => {
 	const [alert, setAlert] = useState('');
 	const [formValues, handleInputChange] = useForm(note);
 	const { title, description, categoryId } = formValues;
+
+	const handleChangeDescription = (event, editor) => {
+		formValues.description = editor.getData();
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -69,15 +106,14 @@ export const AddNote = ({ history }) => {
 				</div>
 
 				<div className="form-group my-4">
-					<textarea
-						className="form-control"
-						id="exampleFormControlTextarea1"
-						rows="10"
-						placeholder="Descripcion"
-						name="description"
-						onChange={handleInputChange}
-						value={description}
-					></textarea>
+					<CKEditor
+						editor={ClassicEditor}
+						config={configCkeditor}
+						data={description}
+						onChange={(event, editor) => {
+							handleChangeDescription(event, editor);
+						}}
+					/>
 				</div>
 
 				{categories.length > 0 && (
