@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import '../../styles/noteItem.css';
 
@@ -40,4 +41,11 @@ export const NoteItem = ({ title, id, favorite, category }) => {
 			></i>
 		</li>
 	);
+};
+
+NoteItem.propTypes = {
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	favorite: PropTypes.bool.isRequired,
+	category: PropTypes.object.isRequired,
 };

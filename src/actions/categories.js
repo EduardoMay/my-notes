@@ -1,4 +1,5 @@
 import { types } from './../types/types';
+import { sweetToast } from '../config/sweet';
 
 export const addCategorieStorageAction = (category) => {
 	return (dispatch) => {
@@ -11,6 +12,11 @@ export const addCategorieStorageAction = (category) => {
 		localStorage.setItem('categories', JSON.stringify(categories));
 
 		dispatch(addCategorieAction(category));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Guardado',
+		});
 	};
 };
 
@@ -41,6 +47,11 @@ export const deleteCategoryStorageAction = (id) => {
 		localStorage.setItem('categories', JSON.stringify(newCategories));
 
 		dispatch(deleteCategoryAction(id));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Eliminado',
+		});
 	};
 };
 
@@ -60,6 +71,11 @@ export const updateCategoryStorageAction = (id, category) => {
 		localStorage.setItem('categories', JSON.stringify(newCategories));
 
 		dispatch(updateCategoryAction(category));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Guardado',
+		});
 	};
 };
 

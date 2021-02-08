@@ -1,5 +1,6 @@
 import { types } from './../types/types';
 import { getNoteById } from '../helpers/getNoteById';
+import { sweetToast } from '../config/sweet';
 
 export const getAllNotesStorageAction = () => {
 	return (dispatch) => {
@@ -17,6 +18,11 @@ export const addNoteStorageAction = (note) => {
 		localStorage.setItem('notes', JSON.stringify(notes));
 
 		dispatch(addNoteAction(note));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Guardado',
+		});
 	};
 };
 
@@ -46,6 +52,11 @@ export const udpateNoteAction = (id, note) => {
 		updateNoteStorageAction(id, note);
 
 		dispatch(updateNoteAcion(note));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Guardado',
+		});
 	};
 };
 
@@ -68,6 +79,11 @@ export const deleteNoteStorageAction = (id) => {
 		localStorage.setItem('notes', JSON.stringify(notesUpdate));
 
 		dispatch(deleteNoteAction(id));
+
+		sweetToast.fire({
+			icon: 'success',
+			title: 'Eliminado',
+		});
 	};
 };
 

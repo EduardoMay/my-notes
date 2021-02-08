@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { deleteCategoryStorageAction } from '../../actions/categories';
 
@@ -8,9 +9,18 @@ export const CategoryItem = ({ category, id }) => {
 	const dispatch = useDispatch();
 
 	const handleDelete = () => {
-		if (window.confirm('Seguro que eliminar?')) {
-			dispatch(deleteCategoryStorageAction(id));
-		}
+		Swal.fire({
+			title: 'Seguro que desea eliminar?',
+			showConfirmButton: false,
+			showDenyButton: true,
+			showCancelButton: true,
+			denyButtonText: `Eliminar`,
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isDenied) {
+				dispatch(deleteCategoryStorageAction(id));
+			}
+		});
 	};
 
 	return (

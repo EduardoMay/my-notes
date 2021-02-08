@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import { getNotesFavorites } from './../../helpers/getNotesFavorites';
 
-import { AddButton } from './../ui/AddButton';
 import { NavTitle } from './../ui/NavTitle';
 
 import { NoteItem } from '../notes/NoteItem';
@@ -18,12 +17,10 @@ export const FavoritiesScreen = () => {
 
 	return (
 		<>
-			<NavTitle title={'Favoritos'} />
+			<NavTitle title={'Favoritos'} url="newnote" />
 
 			{notesList.length > 0 &&
 				notesList.map((note) => <NoteItem key={note.id} {...note} />)}
-
-			<AddButton />
 		</>
 	);
 };

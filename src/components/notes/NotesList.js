@@ -6,7 +6,7 @@ export const NotesList = () => {
 	const { notes } = useSelector((state) => state.notes);
 
 	return (
-		<ul className="list-group">
+		<ul className="list-group" style={{ marginBottom: '90px' }}>
 			{notes.length > 0 &&
 				notes.map((note) => <NoteItem key={note.id} {...note} />)}
 		</ul>
