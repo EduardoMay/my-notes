@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 
 import { useForm } from '../../hooks/useForm';
 import {
-	addCategorieStorageAction,
+	addCategoryStorageAction,
 	updateCategoryStorageAction,
 } from './../../actions/categories';
 import { NavTitle } from './../ui/NavTitle';
@@ -31,7 +31,7 @@ export const AddCategoryScreen = ({ history }) => {
 			if (category !== '') {
 				formValues.id = uniqid('category-');
 
-				dispatch(addCategorieStorageAction(formValues));
+				dispatch(addCategoryStorageAction(formValues));
 			}
 		} else {
 			dispatch(updateCategoryStorageAction(id, formValues));
@@ -42,7 +42,7 @@ export const AddCategoryScreen = ({ history }) => {
 
 	return (
 		<>
-			<NavTitle title={'Categorias'} />
+			<NavTitle title={'Categorías'} />
 
 			<form className="mt-3 container" onSubmit={handleSubmit}>
 				<div className="form-floating mb-3">
@@ -53,9 +53,9 @@ export const AddCategoryScreen = ({ history }) => {
 						name="category"
 						onChange={handleInputChange}
 						value={category}
-						placeholder="Categoria"
+						placeholder="Categoría"
 					/>
-					<label htmlFor="category">Categoria</label>
+					<label htmlFor="category">Categoría</label>
 				</div>
 
 				<div className="form-control">

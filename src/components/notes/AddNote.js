@@ -6,7 +6,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { useForm } from './../../hooks/useForm';
-import { addNoteStorageAction, udpateNoteAction } from '../../actions/note';
+import { addNoteStorageAction, updateNoteAction } from '../../actions/note';
 import { getNoteById } from './../../helpers/getNoteById';
 
 import { NavTitle } from './../ui/NavTitle';
@@ -82,7 +82,7 @@ export const AddNote = ({ history }) => {
 			if (categoryId !== '') {
 				formValues.category = getCategoryById(categoryId);
 			}
-			dispatch(udpateNoteAction(id, formValues));
+			dispatch(updateNoteAction(id, formValues));
 		}
 
 		history.push('/home');

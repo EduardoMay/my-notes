@@ -2,7 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import { noteReducer } from './../reducers/noteReducer';
-import { categorieReducer } from '../reducers/categorieReducer';
+import { categoryReducer } from '../reducers/categoryReducer';
 
 const composeEnhancers =
 	(typeof window !== 'undefined' &&
@@ -11,7 +11,7 @@ const composeEnhancers =
 
 const reducers = combineReducers({
 	notes: noteReducer,
-	categories: categorieReducer,
+	categories: categoryReducer,
 });
 
 export const store = createStore(

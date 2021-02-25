@@ -43,15 +43,15 @@ export const favoriteNoteAction = (id) => {
 		note.favorite = !note.favorite;
 
 		updateNoteStorageAction(id, note);
-		dispatch(updateNoteAcion(note));
+		dispatch(updateNoteDispatch(note));
 	};
 };
 
-export const udpateNoteAction = (id, note) => {
+export const updateNoteAction = (id, note) => {
 	return (dispatch) => {
 		updateNoteStorageAction(id, note);
 
-		dispatch(updateNoteAcion(note));
+		dispatch(updateNoteDispatch(note));
 
 		sweetToast.fire({
 			icon: 'success',
@@ -92,7 +92,7 @@ export const deleteNoteAction = (id) => ({
 	payload: id,
 });
 
-export const updateNoteAcion = (note) => ({
+export const updateNoteDispatch = (note) => ({
 	type: types.updateNote,
 	payload: { id: note.id, note },
 });

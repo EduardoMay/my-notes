@@ -4,11 +4,11 @@ export const types = {
 	deleteNote: '[DeleteNote] eliminar nota',
 	editNote: '[EditNote] editar nota',
 	activeNewNote: '[ActiveNewNote] nueva nota',
-	desactivateNewNote: '[DesactivateNewNote] nueva nota',
+	desactiveNewNote: '[DesactiveNewNote] nueva nota',
 	updateNote: '[UpdateNote] actualizar nota',
 
-	addCategorie: '[AddCategorie] agregar categorie',
-	saveCategorie: '[SaveCategorie] guardar categorie',
-	updatedCategorie: '[UpdateCategorie] actualizar categorie',
-	deleteCategorie: '[DeleteCategorie] eliminar categorie',
+	addCategory: '[AddCategory] agregar category',
+	saveCategory: '[SaveCategory] guardar category',
+	updatedCategory: '[UpdateCategory] actualizar category',
+	deleteCategory: '[DeleteCategory] eliminar category',
 };

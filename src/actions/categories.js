@@ -1,7 +1,7 @@
 import { types } from './../types/types';
 import { sweetToast } from '../config/sweet';
 
-export const addCategorieStorageAction = (category) => {
+export const addCategoryStorageAction = (category) => {
 	return (dispatch) => {
 		const categories = localStorage.categories
 			? JSON.parse(localStorage.categories)
@@ -11,7 +11,7 @@ export const addCategorieStorageAction = (category) => {
 
 		localStorage.setItem('categories', JSON.stringify(categories));
 
-		dispatch(addCategorieAction(category));
+		dispatch(addCategoryAction(category));
 
 		sweetToast.fire({
 			icon: 'success',
@@ -26,13 +26,13 @@ export const saveAllCategoriesAction = () => {
 		: [];
 
 	return {
-		type: types.saveCategorie,
+		type: types.saveCategory,
 		payload: categoriesStorage,
 	};
 };
 
-export const addCategorieAction = (category) => ({
-	type: types.addCategorie,
+export const addCategoryAction = (category) => ({
+	type: types.addCategory,
 	payload: category,
 });
 
@@ -56,7 +56,7 @@ export const deleteCategoryStorageAction = (id) => {
 };
 
 export const deleteCategoryAction = (id) => ({
-	type: types.deleteCategorie,
+	type: types.deleteCategory,
 	payload: id,
 });
 
@@ -80,6 +80,6 @@ export const updateCategoryStorageAction = (id, category) => {
 };
 
 export const updateCategoryAction = (category) => ({
-	type: types.updatedCategorie,
+	type: types.updatedCategory,
 	payload: category,
 });
